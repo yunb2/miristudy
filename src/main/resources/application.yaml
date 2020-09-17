@@ -1,0 +1,4 @@
+s3:
+  bucket:
+      name: miristudy3
+      base-path: study/image/
