@@ -6,6 +6,8 @@ import com.amazonaws.services.s3.model.ObjectMetadata;
 import com.amazonaws.services.s3.model.PutObjectRequest;
 import lombok.RequiredArgsConstructor;
 import me.yunb.miristudy.config.S3Config;
+import me.yunb.miristudy.domain.File;
+import me.yunb.miristudy.repository.FileRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -20,6 +22,8 @@ public class S3UploadService {
     private final S3Config s3Config;
 
     private final AmazonS3 amazonS3;
+
+    private final FileRepository fileRepository;
 
     // {base-path}/{uuid}/{fileName}.xxx
     // s3로 업로드 후, 객체 url 리턴
@@ -41,6 +45,7 @@ public class S3UploadService {
 
         // upload
         amazonS3.putObject(putObjectRequest);
+        fileRepository.save(new File(key, file.getSize()));
 
         return amazonS3.getUrl(s3Config.getBucketName(), key).toString();
     }
