@@ -11,7 +11,7 @@ public class PingController {
 
     @GetMapping("/ping")
     public String pong() throws UnknownHostException {
-        return "pong" + InetAddress.getLocalHost().getHostName();
+        return "pong " + InetAddress.getLocalHost().getHostName();
     }
 
 }
