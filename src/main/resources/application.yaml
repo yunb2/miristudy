@@ -8,7 +8,10 @@ spring:
     url: jdbc:postgresql://miristudy3.cgjoimlwfmu2.ap-northeast-2.rds.amazonaws.com/miristudy
   jpa:
     show-sql: true
-  session:
-    store-type: redis
-  redis:
-    host: localhost
+#  session:
+#    store-type: redis
+#  redis:
+#    host: localhost
+
+server:
+  port: 5000
